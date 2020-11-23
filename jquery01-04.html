@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 1-4</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./jquery.color-2.1.2.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#div01 >.flip").on("click", function(){
+                $("#div01 > .panel").slideDown("slow");
+            });
+
+            $("#div02 > .flip").on("click", function(){
+                $("#div02 >.panel").slideUp("slow");
+            });
+
+            $("#div03 >.flip").on("click", function(){
+                $("#div03 > .panel").slideToggle("slow");
+            });
+
+
+            // animate : jquery를 통해서 사용자 지정 애니메이션을 만들 수 있는 함수
+            // - animate 를 이용하면 css의 animation 속성을 손쉽게 만들 수 있음 
+            // - 시간은 1/1000 초 사용 (slow, fast 사용)
+            // 애니메이션 동작을 할 속성을 여러개 지정할 수 있음 
+            // - 속성값 입력 시 상대값으로 데이터를 입력할 수 있음
+            // - +=, -= 을 사용하여 기존의 속성값에 데이터를 추가할 수 있음 
+            // 여러개의 애니메이션을 사용하여 단계적으로 동작하는 애니메이션을 제작할 수 있음
+            // - animate 에서 속성명을 입력할 때 css 속성명이 '-'가 들어가 있는 속성명은 '-'를 제거하고 이어지는 단어의 첫단어를 대문자로 입력 
+            // - fontSize, backgroundColor, paddingLeft, marginTop
+            // 사용방법 : $(선택자).animate({속성명1 : 속성값1, 속성명2: 속성값2, ...}, 속도 , 실행함수)
+
+            // animate 함수
+            $("#div04 > .ani1").on("click", function(){
+                $("#div04 > .ani1").animate({left : "250px"});
+            });
+
+            $("#div04 > .ani2").on("click", function(){
+                $("#div04 >.ani2").animate({
+                        left: "250px",
+                        opacity : "0.5",
+                        height : "150px",
+                        width : "150px"
+                    },"slow");
+            });
+
+            $("#div04 > .ani3").on("click",function(){
+                $("#div04 >.ani3").animate({
+                    left:"250px", 
+                    height:"+=100px",
+                    width:"+=100px"
+                });
+            });
+
+            $("#div04 >.ani4").on("click",function(){
+                $("#div04 >.ani4").animate({
+                    height:"300px",
+                    opacity:"0.4",
+                }, "slow");
+                $("#div04 >.ani4").animate({
+                    width:"300px",
+                    opacity:"0.8"
+                }, "slow");
+                $("#div04 >.ani4").animate({
+                    height:"100px",
+                    opacity:"0.4"
+                }, "slow");
+                $("#div04 >.ani4").animate({
+                    width:"100px",
+                    opacity:"0.8"
+                }, "slow");
+            });
+
+
+            $("#quiz > .q_box").on("click",function(){
+                $("#quiz > .q_box").animate({
+                    left : "300px",
+                    fontSize : "16px"
+            },"slow");
+                $("#quiz > .q_box").animate({fontSize:"8px", color : "yellow"}, "slow");
+
+                $("#quiz > .q_box").animate({fontSize:"24px", color : "red"}, "slow");
+        });  
+            });
+    </script>
+
+    <style>
+        .panel, .flip {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eee5;
+            border: 1px solid lightgray;
+        }
+
+        .panel { padding: 50px; }
+
+        #div01 > .panel { display: none; }
+
+        #div04 {
+            position: relative;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        #div04 > .ani1 {
+            position: absolute;
+            background-color: yellowgreen;
+        }
+
+        #div04 > .ani2 {
+            position: absolute;
+            background-color: yellowgreen;
+            top: 150px;
+            left: 0px;
+        }
+
+        #div04 >.ani3 {
+            position: absolute;
+            background-color: yellowgreen;
+            left: 0px;
+            top: 260px;
+        }
+
+        #div04 >.ani4 {
+            position: absolute;
+            background-color: yellowgreen;
+            left: 0px;
+            top: 370px;
+        }
+
+        #quiz >.q_box {
+            position :absolute;
+            background-color: linen;
+            width: 200px;
+            height: 200px;
+            left: 0px;
+            top : 1200px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="div01">
+        <h3>slideDown</h3>
+        <div class="flip">클릭 시 아래의 div 영역 표시</div>
+        <div class="panel">클릭 시 표시되는 div 영역 </div>
+    </div>
+
+    <br><hr><br>
+    <div id="div02">
+        <h3>slideUp</h3>
+        <div class="flip">클릭 시 아래의 div 영역 숨김</div>
+        <div class="panel">클릭 시 숨겨지는 div 영역</div>
+    </div>
+
+    <br><hr><br>
+    <div id="div03">
+        <h3>slideToggle</h3>
+        <div class="flip">클릭 시 아래의 div 숨김/ 표시</div>
+        <div class="panel">클릭 시 숨김/표시되는 div 영역 </div>
+    </div>
+
+    <br><hr><br>
+    <div id="div04">
+        <h3>animate</h3>
+
+        <div class="box ani1"></div>
+        <br>
+        <div class="box ani2">클릭 시 이동하면서 커지고 투명해짐 </div>
+        <div class="box ani3">클릭 시 상대값을 사용하여 크기가 커짐 </div>
+        <div class="box ani4">클릭 시 애니메이션 연계동작 </div>
+    </div>
+
+    <br><hr<br><br>
+    
+    <!-- animate 함수를 사용하여 div 안에 있는 p 태그의 위치를 왼쪽에서 오른쪽으로 300px 이동시키고, 이동 후 div 태그의 글자가 8px로 작아 졌다가 다시 24px로 커지는 애니메이션을 완성하세요  
+    - div 태그의 크기 width : 200px, height : 200px
+    - p 태그의 글자 : Hello ( 시작 시 글자 크기 : 16px/1em, 작아졌을 경우 : 8px/ 0.5em, 커졌을 경우 :  24px/ 2em-->
+
+    <div id="quiz">
+        <p class="q_box">Hello</p>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+</html>
