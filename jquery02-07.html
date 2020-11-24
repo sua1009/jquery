@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery2-7</title>
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+
+        // css() : addClass, removeClass, toggleClass는 미리 생성되어 있는 css Class를 추가/ 삭제 하는 것이지만 css()함수는 직접css 속성명 및 속성값을 가져오거나 적용시키는 함수 
+        // - $(선택자).css("속성명") : 선택한 요소의 지정한 속성값을 가져옴 
+        // - $(선택자).css("속성명", "속성값") : 선택한 요소의 지정한 속성명의 속성값을 설정
+        // - $(선택자).css({"속성명1": "속성값1", "속성명2":"속성값2", ....}) : object타입을 사용하여 한번에 여러가지 속성을 설정할 수 있음
+
+        // jquery 크기 함수 
+        // width() : 지정한 요소의 너비를 가져오거나 설정
+        // height() :  지정한 요소의 높이를 가져오거나 설정
+        // innerWidth() : 지정한 요소의 너비를 가져오거나 설정( pdding 영역 포함)
+        // innerHeight() : 지정한 요소의 높이를 가져오거나 설정 (padding 영역 포함)
+        // outerWidth() : 지정한 요소의 너비를 가져오거나 설정( border 영역 까지 포함)
+        // outerHeight() :  지정한 요소의 높이를 가져오거나 설졍 (border 영역 까지 포함)
+        $(document).ready(function(){
+            $("#div01 > p").on("click", function(){
+                var id = this.id;
+                var color;
+
+                if ( id == "p01"){
+                    color = $("#" + id).css("background-color");
+                }
+                else if (id == "p02") {
+                    color = $("#" + id).css("background-color");
+                }
+                else {
+                    color = $("#" + id).css("background-color");
+                }
+                alert("Background-color : " + color);
+            });
+        $("#btnCss02").on("click", function(){
+            $("#div02 > p").css("background-color", "yellow");
+        });
+
+        $("#btnCss03").on("click",function(){
+            $("#p07").css({
+                "background-color" : "yellow",
+                "font-size" : "2em",
+                "color" : "blue",
+                "border" : "1px solid black"
+            });
+        });
+     });
+
+    </script>
+</head>
+<body>
+
+    <div id="div01">
+        <h3>css로 속성값 가져오기</h3>
+
+        <button id="btnGetColor">클릭 시 p태그의 배경색 가져오기</button>
+        <p id="p01" style="background-color: red;">빨강색</p>
+        <p id="p02" style="background-color: green;">녹색</p>
+        <p id="p03" style="background-color: blue;">파란색</p>
+    </div>
+    
+    <br><hr><br>
+    <div id="div02">
+        <h3>css로 속성값 설정하기</h3>
+
+        <button id="btnCss02">클릭 시 배경색 변경</button>
+        <button id="btnCss03">클릭 시 css 속성 여러개 변경</button>
+        <p id="p04" style="background-color: red;">빨강색</p>
+        <p id="p05" style="background-color: green;">녹색</p>
+        <p id="p06" style="background-color: blue;">파란색</p>
+        <p id="p07">노랑색</p>
+    </div>
+</body>
+</html>
