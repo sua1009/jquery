@@ -36,6 +36,15 @@
             // 메서드 체이닝
             $("#btn").on("click", function(){
                 $("#p1").css("color", "red").slideUp(2000).slideDown(2000).fadeOut(2000).fadeIn(2000);
+           
+
+            // jquery는 구문이 엄격하지 않기 때문에 아래와 같이 사용해도 상관없음
+                // $("#p1").css("color", "red")
+                // .slideUp(2000)
+                // .slideDown(2000)
+                // .fadeOut(2000)
+                // .fadeIn(2000);
+           
             });
         });
 

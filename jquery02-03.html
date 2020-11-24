@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 2-3</title>
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+      // attr() - 선택한 요소의 속성값을 설정하거나 반환
+      // - $(선택자).attr(속성명) : 선택한 요소의 지정한 속성값을 가져옴
+      // - $(선택자).attr(속성명, 입력할 속성값): 선택한 요소의 속성값을 입력하기
+      // - $(선택자).attr({속성명1 : 속성값1, 속성명2: 속성값2, .....}) : object 타입을 사용하여 여러가지 속성값을 한번에 입력가능
+    
+        //attr() 사용하기
+    $(document).ready(function(){
+        $("#btnAttrGet").on("click", function(){
+            var txt = $("#a01").attr("href");
+            alert("attr() : " + txt);
+        });
+    
+    $("#btnAttrSet").on("click",function(){
+       // 기본 attr사용
+        // var txt = "https://www,daum.net";
+        // $("#a01").attr("href", txt);
+        var txt = "https://" +$("#url").val();
+        // $("#a01").attr("href", txt);
+       $("#a01").attr({
+           "href" : txt,
+           "target" : "_blank"}, function(){
+    });
+});
+    // 문제 1 )자신이 원하는 주소로 url을 변경하고, 표시글도 자신이 원하는 텍스트로 변경하세요 
+    // $("#btnAttrSet").on("click", function(){
+    //         var txt = $("#a01").attr("href", "https://daum.net");
+    // });
+
+    $("#btnAttrSet").on("click", function(){
+        var name = "https://"+$("#urlName").val();
+        $("#a01").text(name);
+    });
+});
+
+    
+    </script>
+</head>
+<body>
+    <div>
+        <h3>attr 사용하기</h3>
+        <p id="urlName"><a href="https://naver.com" id="a01">** Naver **</a></p>
+        <label> URL : <input type="text" id="url" placeholder="주소를 입력해주세요"></label><br>
+       
+        <button id="btnAttrGet">클릭 시 링크주소 불러오기</button>
+        <button id="btnAttrSet">클릭 시 링크주소 입력하기</button>
+    </div>
+    
+</body>
+</html>
